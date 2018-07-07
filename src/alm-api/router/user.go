@@ -11,7 +11,7 @@ func user(r *gin.Engine) {
 		c.JSON(200, gin.H{
 			"code":200,
 			"msg":"",
-			"usres":"{}",
+			"user":"{a:2,b:3}",
 		})
 	})
 
