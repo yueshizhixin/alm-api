@@ -12,5 +12,4 @@ func main() {
 	var r = gin.Default()
 	rout.InitRouter(r)
 	r.Run(":80")
-	//manners.ListenAndServe(":80", r)
 }

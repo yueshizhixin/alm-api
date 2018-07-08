@@ -2,7 +2,7 @@ package rout
 
 import (
 	"github.com/gin-gonic/gin"
-	"alm-api/middleWare/auth"
+	"alm-api/midWare/auth"
 )
 
 func user(r *gin.Engine) {
@@ -15,7 +15,9 @@ func user(r *gin.Engine) {
 		})
 	})
 
-	rg.Use(wm.AuthUserD())
+	rg.Use(auth.AuthUserD())
 	{
 	}
 }
+
+
