@@ -19,8 +19,11 @@ func userRout(r *gin.Engine) {
 		var pwd2 = strings.TrimSpace(ctx.PostForm("pwd2"))
 		if pwd != pwd2 {
 			ctx.JSON(200, gin.H{
-
+				"code":"404",
+				"msg":"两次密码不同",
+				"data":"{}",
 			})
+			//return 
 		}
 		var u = user.User{
 			Acc: acc,
@@ -28,13 +31,16 @@ func userRout(r *gin.Engine) {
 		}
 		if ok, err = svUser.Add(&u); ok {
 			ctx.JSON(200, gin.H{
-
+				"code":"200",
+				"msg":"操作成功",
+				"data":"{}",
 			})
+			//return  
 		} else {
 			ctx.JSON(200, gin.H{
-				"code": 123,
+				"code": "500",
 				"msg":  err,
-				"data": 222,
+				"data": "{}",
 			})
 		}
 	})
