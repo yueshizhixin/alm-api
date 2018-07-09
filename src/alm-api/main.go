@@ -10,6 +10,6 @@ func main() {
 	defer glb.DB.Close()
 	gin.SetMode(gin.DebugMode)
 	var r = gin.Default()
-	rout.InitRouter(r)
+	rout.InitRout(r)
 	r.Run(":80")
 }

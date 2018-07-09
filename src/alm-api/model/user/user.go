@@ -1,13 +1,13 @@
-package model
+package user
 
 import "time"
 
 /**
-	tool_url:gitee.com/yueshizhixin/goLearn
-	author:go_orm_generator@埃罗芒老兄(www.yueshizhixin.top)
-	scheme:alm
-	table:t_user
-	time:2018-07-08 19:16:27
+	@url    `https://github.com/yueshizhixin/go-orm-generator`
+	@author `埃罗芒老兄(https://yueshizhixin.github.io/)`
+	@scheme `alm`
+	@table  `t_user`
+	@time   `2018-07-09 17:35:04`
  */
 type User struct {
 	Id         uint32    `json:"-" gorm:"primary_key;"`

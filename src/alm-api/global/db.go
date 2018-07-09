@@ -1,9 +1,5 @@
 package glb
 
-/**
-	数据库全局对象
- */
-
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
@@ -11,6 +7,9 @@ import (
 	"alm-api/config"
 )
 
+/**
+	数据库全局对象
+ */
 var (
 	DB  *gorm.DB
 	err error
