@@ -6,21 +6,23 @@ import (
 	"alm-api/service/user"
 	"strings"
 	"alm-api/model/user"
+	"alm-api/session"
 )
 
 func userRout() {
 	var ok bool
 	var err error
-	var r = gin.Default()
-	rg := r.Group("/user")
+
+	rg := R.Group("/user")
 	rg.GET("", func(ctx *gin.Context) {
 		//var acc = strings.TrimSpace(ctx.PostForm("acc"))
 		//var pwd = strings.TrimSpace(ctx.PostForm("pwd"))
 		var u = user.User{
-			Acc: strings.TrimSpace(ctx.DefaultQuery("acc", "")),
-			Pwd: strings.TrimSpace(ctx.DefaultQuery("pwd", "")),
+			Acc: strings.TrimSpace(ctx.DefaultQuery("acc", "1")),
+			Pwd: strings.TrimSpace(ctx.DefaultQuery("pwd", "2")),
 		}
 		if ok, err = userSV.Add(&u); ok {
+			session.Set(ctx, &u)
 			ctx.JSON(200, gin.H{
 				"code": "200",
 				"msg":  "操作成功",
@@ -38,6 +40,5 @@ func userRout() {
 
 	rg.Use(auth.AuthUserD())
 	{
-		rg.POST("/aa",auth.AuthUserD())
 	}
 }

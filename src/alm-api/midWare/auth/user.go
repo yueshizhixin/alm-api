@@ -3,7 +3,7 @@ package auth
 import "github.com/gin-gonic/gin"
 
 /**
-	权限验证
+	
  */
 
 func AuthUserD() gin.HandlerFunc {

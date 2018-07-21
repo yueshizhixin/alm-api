@@ -6,8 +6,7 @@ import (
 )
 
 func noteRout() {
-	var r = gin.Default()
-	rg := r.Group("/note")
+	rg := R.Group("/note")
 	rg.GET("", func(c *gin.Context) {
 	})
 	rg.POST("", func(c *gin.Context) {

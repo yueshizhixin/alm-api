@@ -1,38 +1,26 @@
 package rout
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
 	"alm-api/config"
+	"github.com/gin-gonic/gin"
 )
 
 /**
 	路由索引
  */
 
-func InitRout()  {
+var (
+	R *gin.Engine
+)
 
-	var r = gin.Default()
-	r.Use(sessions.Sessions("user", cookie.NewStore([]byte(conf.SESSION_SECRET))))
-	r.GET("/test", func(c *gin.Context) {
-		session := sessions.Default(c)
-		var count int
-		v := session.Get("count")
-		if v == nil {
-			count = 0
-		} else {
-			count = v.(int)
-			count++
-		}
-		session.Set("count", count)
-		session.Save()
-		c.JSON(200, gin.H{"count": count})
-	})
+func init()  {
+	R=gin.Default()
+}
 
-
+func InitRout() {
+	R.Use(sessions.Sessions("alm_api", cookie.NewStore([]byte(conf.SESSION_SECRET))))
 	userRout()
 	noteRout()
 }
-
-

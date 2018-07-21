@@ -5,10 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"alm-api/router"
 )
-
+/**
+	
+ */
 func main() {
 	defer glb.DB.Close()
 	gin.SetMode(gin.DebugMode)
 	rout.InitRout()
-	gin.Default().Run(":80")
+	rout.R.Run(":80")
 }
+

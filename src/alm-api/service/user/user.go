@@ -7,6 +7,10 @@ import (
 	"alm-api/global"
 )
 
+/**
+	
+ */
+ 
 func Add(user *user.User) (bool, error) {
 	if user.Acc == "" || user.Pwd == "" {
 		return false, errors.New("账号或密码不能为空")
