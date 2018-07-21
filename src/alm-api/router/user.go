@@ -6,6 +6,7 @@ import (
 	"alm-api/service/user"
 	"alm-api/model/user"
 	"alm-api/session"
+	"alm-api/global"
 )
 
 /*
@@ -17,31 +18,28 @@ func userRout() {
 	var err error
 
 	rg := RG.Group("/user")
-	rg.GET("/enum",)
-	rg.GET("", func(ctx *gin.Context) {
-		//var acc = strings.TrimSpace(ctx.PostForm("acc"))
-		//var pwd = strings.TrimSpace(ctx.PostForm("pwd"))
+	rg.GET("/enum", func(c *gin.Context) {
+		glb.JSON200(c, nil, nil)
+		return
+	})
+	rg.GET("", func(c *gin.Context) {
 		var u = user.User{
-			Acc: strings.TrimSpace(ctx.DefaultQuery("acc", "1")),
-			Pwd: strings.TrimSpace(ctx.DefaultQuery("pwd", "2")),
+			Acc: strings.TrimSpace(c.DefaultQuery("acc", "1")),
+			Pwd: strings.TrimSpace(c.DefaultQuery("pwd", "2")),
 		}
 		if ok, err = userSV.Add(&u); ok {
-			session.Set(ctx, &u)
-			ctx.JSON(200, gin.H{
-				"code": "200",
-				"msg":  "操作成功",
-				"data": "{}",
-			})
-			//return  
+			session.Set(c, &u)
+			glb.JSON200(c, "操作成功", nil)
+			return
 		} else {
-			ctx.JSON(200, gin.H{
-				"code": "500",
-				"msg":  err.Error(),
-				"data": "{}",
-			})
+			glb.JSON500(c, err.Error(), nil)
+			return
 		}
 	})
-	
+	rg.POST("", func(c *gin.Context) {
+		
+	})
+
 	rg.Use()
 	{
 	}
