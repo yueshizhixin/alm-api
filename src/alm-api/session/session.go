@@ -1,15 +1,14 @@
 package session
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
-func clear() gin.HandlerFunc {
-	return func(ctx *gin.Context) {
-		gin.Default()
-	}
+func clear()  {
+	
 }
 
 func save()  {
-	gin.Default()
 }
 
 func AuthUserD() gin.HandlerFunc {

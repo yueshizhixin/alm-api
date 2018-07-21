@@ -29,12 +29,6 @@ func InitRout()  {
 		session.Save()
 		c.JSON(200, gin.H{"count": count})
 	})
-	r.GET("/test2", func(c *gin.Context) {
-		session := sessions.Default(c)
-		session.Clear()
-		session.Save()
-		c.JSON(200, gin.H{})
-	})
 
 
 	userRout()

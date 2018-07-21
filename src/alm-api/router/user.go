@@ -38,5 +38,6 @@ func userRout() {
 
 	rg.Use(auth.AuthUserD())
 	{
+		rg.POST("/aa",auth.AuthUserD())
 	}
 }
