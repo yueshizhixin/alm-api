@@ -5,9 +5,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"alm-api/router"
 )
-/**
+
+/*
 	
  */
+ 
 func main() {
 	defer glb.DB.Close()
 	gin.SetMode(gin.DebugMode)

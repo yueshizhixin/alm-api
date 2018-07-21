@@ -1,26 +1,28 @@
 package rout
 
 import (
-	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/cookie"
-	"alm-api/config"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-contrib/sessions"
+	"alm-api/config"
+	"github.com/gin-contrib/sessions/cookie"
 )
 
-/**
+/*
 	路由索引
  */
 
 var (
-	R *gin.Engine
+	R  *gin.Engine
+	RG *gin.RouterGroup
 )
 
-func init()  {
-	R=gin.Default()
+func init() {
+	R = gin.Default()
+	R.Use(sessions.Sessions(conf.SESSION_NAME, cookie.NewStore([]byte(conf.SESSION_SECRET))))
+	RG = R.Group("/api")
 }
 
 func InitRout() {
-	R.Use(sessions.Sessions("alm_api", cookie.NewStore([]byte(conf.SESSION_SECRET))))
 	userRout()
 	noteRout()
 }

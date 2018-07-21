@@ -2,7 +2,7 @@ package glb
 
 import "github.com/gin-gonic/gin"
 
-/**
+/*
 	
  */
 

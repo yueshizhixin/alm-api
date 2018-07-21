@@ -2,18 +2,22 @@ package rout
 
 import (
 	"github.com/gin-gonic/gin"
-	"alm-api/midWare/auth"
-	"alm-api/service/user"
 	"strings"
+	"alm-api/service/user"
 	"alm-api/model/user"
 	"alm-api/session"
 )
+
+/*
+
+ */
 
 func userRout() {
 	var ok bool
 	var err error
 
-	rg := R.Group("/user")
+	rg := RG.Group("/user")
+	rg.GET("/enum",)
 	rg.GET("", func(ctx *gin.Context) {
 		//var acc = strings.TrimSpace(ctx.PostForm("acc"))
 		//var pwd = strings.TrimSpace(ctx.PostForm("pwd"))
@@ -37,8 +41,8 @@ func userRout() {
 			})
 		}
 	})
-
-	rg.Use(auth.AuthUserD())
+	
+	rg.Use()
 	{
 	}
 }

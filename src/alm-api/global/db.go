@@ -7,7 +7,7 @@ import (
 	"alm-api/config"
 )
 
-/**
+/*
 	数据库全局对象
  */
 var (
