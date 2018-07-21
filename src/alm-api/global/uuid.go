@@ -5,7 +5,7 @@ import (
 	"github.com/satori/go.uuid"
 )
 
-func UID() string {
+func UUID() string {
 	return strings.Replace(uuid.Must(uuid.NewV4()).String(), "-", "", 4)
 }
 

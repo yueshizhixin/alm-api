@@ -1,4 +1,4 @@
-package svUser
+package userSV
 
 import (
 	"alm-api/model/user"
@@ -11,7 +11,7 @@ func Add(user *user.User) (bool, error) {
 	if user.Acc == "" || user.Pwd == "" {
 		return false, errors.New("账号或密码不能为空")
 	}
-	user.Uid = glb.UID()
+	user.Uid = glb.UUID()
 	user.CreateTime = time.Now()
 	user.LatestTime = time.Now()
 	if isNew := glb.DB.Create(&user).NewRecord(user); isNew {

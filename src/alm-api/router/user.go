@@ -8,10 +8,10 @@ import (
 	"alm-api/model/user"
 )
 
-func userRout(r *gin.Engine) {
+func userRout() {
 	var ok bool
 	var err error
-
+	var r = gin.Default()
 	rg := r.Group("/user")
 	rg.GET("", func(ctx *gin.Context) {
 		//var acc = strings.TrimSpace(ctx.PostForm("acc"))
@@ -20,7 +20,7 @@ func userRout(r *gin.Engine) {
 			Acc: strings.TrimSpace(ctx.DefaultQuery("acc", "")),
 			Pwd: strings.TrimSpace(ctx.DefaultQuery("pwd", "")),
 		}
-		if ok, err = svUser.Add(&u); ok {
+		if ok, err = userSV.Add(&u); ok {
 			ctx.JSON(200, gin.H{
 				"code": "200",
 				"msg":  "操作成功",

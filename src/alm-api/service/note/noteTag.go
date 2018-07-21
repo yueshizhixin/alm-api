@@ -1,4 +1,4 @@
-package svNote
+package noteSV
 
 func TagAdd() bool  {
 	return  true

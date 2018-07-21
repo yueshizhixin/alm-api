@@ -1,4 +1,4 @@
-package svNote
+package noteSV
 
 func Add() bool {
 	return  true

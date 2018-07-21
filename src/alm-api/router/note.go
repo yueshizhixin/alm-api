@@ -5,7 +5,8 @@ import (
 	"alm-api/midWare/auth"
 )
 
-func noteRout(r *gin.Engine) {
+func noteRout() {
+	var r = gin.Default()
 	rg := r.Group("/note")
 	rg.GET("", func(c *gin.Context) {
 	})
