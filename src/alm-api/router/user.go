@@ -22,7 +22,8 @@ func userRout() {
 		return
 	})
 	rg.GET("", func(c *gin.Context) {
-
+		glb.JSON200(c,"访问成功",nil)
+		return
 	})
 	rg.POST("", func(c *gin.Context) {
 		var u user.User

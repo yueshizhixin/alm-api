@@ -14,16 +14,21 @@ import (
 func Get(ctx *gin.Context) user.User {
 	s := sessions.Default(ctx)
 	return user.User{
-		Acc: s.Get("acc").(string),
-		Pwd: s.Get("pwd").(string),
+		Id:       s.Get("id").(string),
+		Acc:      s.Get("acc").(string),
+		Phone:    s.Get("phone").(string),
+		Email:    s.Get("email").(string),
+		UserName: s.Get("userName").(string),
 	}
-
 }
 
 func Set(ctx *gin.Context, user *user.User) {
 	s := sessions.Default(ctx)
+	s.Set("id", &user.Id)
 	s.Set("acc", &user.Acc)
-	s.Set("pwd", &user.Pwd)
+	s.Set("phone", &user.Phone)
+	s.Set("email", &user.Email)
+	s.Set("userName", &user.UserName)
 	s.Save()
 }
 

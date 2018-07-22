@@ -1,0 +1,5 @@
+package cache
+
+/*
+	area cache
+ */
