@@ -2,7 +2,6 @@ package rout
 
 import (
 	"github.com/gin-gonic/gin"
-	"strings"
 	"alm-api/service/user"
 	"alm-api/model/user"
 	"alm-api/session"
@@ -23,21 +22,23 @@ func userRout() {
 		return
 	})
 	rg.GET("", func(c *gin.Context) {
-		var u = user.User{
-			Acc: strings.TrimSpace(c.DefaultQuery("acc", "1")),
-			Pwd: strings.TrimSpace(c.DefaultQuery("pwd", "2")),
+
+	})
+	rg.POST("", func(c *gin.Context) {
+		var u user.User
+		err = c.Bind(&u)
+		if err != nil {
+			glb.JSON500(c, err.Error(), nil)
+			return
 		}
 		if ok, err = userSV.Add(&u); ok {
 			session.Set(c, &u)
-			glb.JSON200(c, "操作成功", nil)
+			glb.JSON200(c, glb.TIP_SUCCESS, nil)
 			return
 		} else {
 			glb.JSON500(c, err.Error(), nil)
 			return
 		}
-	})
-	rg.POST("", func(c *gin.Context) {
-		
 	})
 
 	rg.Use()

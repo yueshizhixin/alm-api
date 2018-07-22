@@ -16,4 +16,3 @@ func main() {
 	rout.InitRout()
 	rout.R.Run(":80")
 }
-

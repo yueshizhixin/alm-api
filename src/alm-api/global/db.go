@@ -24,4 +24,5 @@ func init() {
 	}
 	DB.DB().SetMaxOpenConns(conf.DBMaxOpenConns)
 	DB.DB().SetMaxIdleConns(conf.DBMaxIdleConns)
+	DB.DB().SetConnMaxLifetime(conf.DBMaxLifeTime)
 }

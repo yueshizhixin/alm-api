@@ -18,4 +18,5 @@
 ### 后期
 - session安全性
 - 抢购nsq
+- uuid生成重写 符合自增 mysql binary 与go的类型对应
 - 高并发
