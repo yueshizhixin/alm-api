@@ -13,10 +13,10 @@
 - 数据库类型与model类型的详细对应
 - session安全
 - 热更新
+- 改用SnowFlake
 
 
 ### 后期
 - session安全性
 - 抢购nsq
-- uuid生成重写 符合自增 mysql binary 与go的类型对应
 - 高并发
