@@ -14,7 +14,7 @@ import (
 func Get(ctx *gin.Context) user.User {
 	s := sessions.Default(ctx)
 	return user.User{
-		Id:       s.Get("id").(string),
+		Id:       s.Get("id").(uint32),
 		Acc:      s.Get("acc").(string),
 		Phone:    s.Get("phone").(string),
 		Email:    s.Get("email").(string),

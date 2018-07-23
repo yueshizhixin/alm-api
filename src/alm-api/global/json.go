@@ -23,8 +23,7 @@ func formatData(code int, msg interface{}, data interface{}) interface{} {
 }
 
 func JSON200(ctx *gin.Context, msg interface{}, data interface{}) {
-	
-	ctx.JSONP(200, formatData(200, msg, data))
+	ctx.JSON(200, formatData(200, msg, data))
 }
 
 func JSON500(ctx *gin.Context, msg interface{}, data interface{}) {

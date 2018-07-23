@@ -6,6 +6,8 @@ import (
 	"alm-api/model/user"
 	"alm-api/session"
 	"alm-api/global"
+	"fmt"
+	"errors"
 )
 
 /*
@@ -22,14 +24,14 @@ func userRout() {
 		return
 	})
 	rg.GET("", func(c *gin.Context) {
-		glb.JSON200(c,"访问成功",nil)
+		glb.JSON200(c, "访问成功", nil)
 		return
 	})
 	rg.POST("", func(c *gin.Context) {
 		var u user.User
-		err = c.Bind(&u)
-		if err != nil {
-			glb.JSON500(c, err.Error(), nil)
+		fmt.Println(glb.ERR_FAIL)
+		if c.Bind(&u) != nil {
+			glb.JSON500(c, errors.New(glb.TIP_FAIL), nil)
 			return
 		}
 		if ok, err = userSV.Add(&u); ok {

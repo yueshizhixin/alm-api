@@ -8,13 +8,13 @@
 ### 版本
 - v0.0.1 注册与登录 
 
-###依赖
-- gin github.com/gin-gonic/gin
-- mysql github.com/go-sql-driver/mysql
-- gorm github.com/jinzhu/gorm
-- session github.com/gin-contrib/sessions
+### 依赖
+- github.com/gin-gonic/gin
+- github.com/go-sql-driver/mysql
+- github.com/jinzhu/gorm
+- github.com/gin-contrib/sessions
 - github.com/gin-contrib/cors
-- uuid github.com/satori/go.uuid
+- github.com/satori/go.uuid
 
 ### 当前代码待优化
 - err错误提示统一
@@ -23,7 +23,6 @@
 - 热更新
 - 改用SnowFlake
 - i18n
-
 
 ### 后期
 - session安全性

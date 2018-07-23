@@ -8,5 +8,9 @@ const (
 )
 
 var (
-	ERR_FAIL = errors.New(TIP_FAIL)
+	ERR_FAIL error
 )
+
+func init() {
+	ERR_FAIL = errors.New(TIP_FAIL)
+}
