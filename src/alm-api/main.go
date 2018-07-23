@@ -14,5 +14,5 @@ func main() {
 	defer glb.DB.Close()
 	gin.SetMode(gin.DebugMode)
 	rout.InitRout()
-	rout.R.Run(":80")
+	rout.R.Run(":8080")
 }

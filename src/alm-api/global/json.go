@@ -1,6 +1,8 @@
 package glb
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+)
 
 /*
 	JSON格式化
@@ -21,7 +23,8 @@ func formatData(code int, msg interface{}, data interface{}) interface{} {
 }
 
 func JSON200(ctx *gin.Context, msg interface{}, data interface{}) {
-	ctx.JSON(200, formatData(200, msg, data))
+	
+	ctx.JSONP(200, formatData(200, msg, data))
 }
 
 func JSON500(ctx *gin.Context, msg interface{}, data interface{}) {

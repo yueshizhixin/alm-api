@@ -5,6 +5,7 @@ import (
 	"github.com/gin-contrib/sessions"
 	"alm-api/config"
 	"github.com/gin-contrib/sessions/cookie"
+	"github.com/gin-contrib/cors"
 )
 
 /*
@@ -19,6 +20,7 @@ var (
 func init() {
 	R = gin.Default()
 	R.Use(sessions.Sessions(conf.SESSION_NAME, cookie.NewStore([]byte(conf.SESSION_SECRET))))
+	R.Use(cors.Default())
 	RG = R.Group("/api")
 }
 
