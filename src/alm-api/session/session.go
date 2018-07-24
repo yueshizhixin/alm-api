@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/sessions"
 	"alm-api/model/user"
+	"alm-api/global"
 )
 
 /*
@@ -14,21 +15,21 @@ import (
 func Get(ctx *gin.Context) user.User {
 	s := sessions.Default(ctx)
 	return user.User{
-		Id:       s.Get("id").(uint32),
-		Acc:      s.Get("acc").(string),
-		Phone:    s.Get("phone").(string),
-		Email:    s.Get("email").(string),
-		UserName: s.Get("userName").(string),
+		Id:       glb.If(s.Get("id")==nil,uint32(0),s.Get("id")).(uint32),
+		Acc:      glb.If(s.Get("acc")==nil,"",s.Get("acc")).(string),
+		Phone:    glb.If(s.Get("phone")==nil,"",s.Get("phone")).(string),
+		Email:    glb.If(s.Get("email")==nil,"",s.Get("email")).(string),
+		UserName: glb.If(s.Get("userName")==nil, "",s.Get("userName")).(string),
 	}
 }
 
 func Set(ctx *gin.Context, user *user.User) {
 	s := sessions.Default(ctx)
-	s.Set("id", &user.Id)
-	s.Set("acc", &user.Acc)
-	s.Set("phone", &user.Phone)
-	s.Set("email", &user.Email)
-	s.Set("userName", &user.UserName)
+	s.Set("id", user.Id)
+	s.Set("acc", user.Acc)
+	s.Set("phone", user.Phone)
+	s.Set("email", user.Email)
+	s.Set("userName", user.UserName)
 	s.Save()
 }
 

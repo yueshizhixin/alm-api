@@ -6,8 +6,8 @@ import (
 	"alm-api/model/user"
 	"alm-api/session"
 	"alm-api/global"
+	"alm-api/middleWare/auth"
 	"fmt"
-	"errors"
 )
 
 /*
@@ -24,13 +24,33 @@ func userRout() {
 		return
 	})
 	rg.GET("", func(c *gin.Context) {
-		return
+		var u user.User
+		//断电
+		fmt.Println(u)
+		if c.Bind(&u) != nil {
+			glb.JSON500(c, glb.TIP_BIND_FAIL, nil)
+			return
+		}
+		fmt.Println(u)
+		if u.Id > 0 {
+			glb.JSON200(c, nil, gin.H{
+				"user": glb.DB.Take(&u),
+			})
+		} else {
+			if auth.IsLogin(c) {
+				glb.JSON200(c, nil, gin.H{
+					"user": session.Get(c),
+				})
+				return
+			} else {
+				glb.JSON404(c, glb.TIP_NOT_EXIST, nil)
+			}
+		}
 	})
 	rg.POST("", func(c *gin.Context) {
 		var u user.User
-		fmt.Println(glb.ERR_FAIL)
 		if c.Bind(&u) != nil {
-			glb.JSON500(c, errors.New(glb.TIP_FAIL), nil)
+			glb.JSON500(c, glb.TIP_BIND_FAIL, nil)
 			return
 		}
 		if ok, err = userSV.Add(&u); ok {
@@ -44,9 +64,8 @@ func userRout() {
 	})
 	rg.POST("signIn", func(c *gin.Context) {
 		var u user.User
-		fmt.Println(glb.ERR_FAIL)
 		if c.Bind(&u) != nil {
-			glb.JSON500(c, errors.New(glb.TIP_FAIL), nil)
+			glb.JSON500(c, glb.TIP_BIND_FAIL, nil)
 			return
 		}
 		if ok = userSV.IsExist(&u); ok {

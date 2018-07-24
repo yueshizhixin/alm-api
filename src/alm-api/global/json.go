@@ -15,6 +15,7 @@ func formatData(code int, msg interface{}, data interface{}) interface{} {
 	if msg == nil {
 		msg = ""
 	}
+	
 	return gin.H{
 		"code": code,
 		"msg":  msg,

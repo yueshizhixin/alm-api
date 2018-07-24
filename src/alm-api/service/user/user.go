@@ -19,7 +19,7 @@ func Add(user *user.User) (bool, error) {
 	}
 	user.Init()
 	if isNew := glb.DB.Create(&user).NewRecord(user); isNew {
-		return false, glb.ERR_FAIL
+		return false, errors.New(glb.TIP_FAIL)
 	}
 	return true, nil
 }
