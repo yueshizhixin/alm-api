@@ -23,3 +23,7 @@ func Add(user *user.User) (bool, error) {
 	}
 	return true, nil
 }
+
+func IsExist(user *user.User) bool {
+	return true
+}

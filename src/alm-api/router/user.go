@@ -24,7 +24,6 @@ func userRout() {
 		return
 	})
 	rg.GET("", func(c *gin.Context) {
-		glb.JSON200(c, "访问成功", nil)
 		return
 	})
 	rg.POST("", func(c *gin.Context) {
@@ -40,6 +39,22 @@ func userRout() {
 			return
 		} else {
 			glb.JSON500(c, err.Error(), nil)
+			return
+		}
+	})
+	rg.POST("signIn", func(c *gin.Context) {
+		var u user.User
+		fmt.Println(glb.ERR_FAIL)
+		if c.Bind(&u) != nil {
+			glb.JSON500(c, errors.New(glb.TIP_FAIL), nil)
+			return
+		}
+		if ok = userSV.IsExist(&u); ok {
+			session.Set(c, &u)
+			glb.JSON200(c, glb.TIP_SUCCESS, nil)
+			return
+		} else {
+			glb.JSON404(c, glb.TIP_NOT_EXIST, nil)
 			return
 		}
 	})

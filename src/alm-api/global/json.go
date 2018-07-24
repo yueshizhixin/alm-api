@@ -29,3 +29,7 @@ func JSON200(ctx *gin.Context, msg interface{}, data interface{}) {
 func JSON500(ctx *gin.Context, msg interface{}, data interface{}) {
 	ctx.JSON(200, formatData(500, msg, data))
 }
+
+func JSON404(ctx *gin.Context, msg interface{}, data interface{}) {
+	ctx.JSON(200, formatData(404, msg, data))
+}

@@ -19,7 +19,7 @@ type User struct {
 	Phone      string    `json:"phone" gorm:"column:phone;type:varchar(32);"`              /*手机号*/
 	Email      string    `json:"email" gorm:"column:email;type:varchar(64);"`              /*电子邮箱*/
 	SignType   int8      `json:"signType" gorm:"column:signType;type:tinyint(4);"`         /*注册方式*/
-	Pwd        string    `json:"pwd" gorm:"column:pwd;type:varchar(16);"`                  /*密码*/
+	Pwd        string    `json:"-" gorm:"column:pwd;type:varchar(16);"`                  /*密码*/
 	UserName   string    `json:"userName" gorm:"column:userName;type:varchar(64);"`        /*用户姓名*/
 	Sex        int8      `json:"sex" gorm:"column:sex;type:tinyint(4);"`                   /*性别*/
 	Brithday   string    `json:"brithday" gorm:"column:brithday;type:varchar(16);"`        /*出生日期*/
