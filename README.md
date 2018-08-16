@@ -22,7 +22,7 @@
 - http header 内容与cors
 - 热更新
 - 改用SnowFlake
-- i18n
+- i18n 与 错误码
 
 ### 后期
 - session安全性

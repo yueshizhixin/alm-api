@@ -10,18 +10,18 @@ import (
 	
  */
 
-func Add(user *user.User) (bool, error) {
+func Add(user *user.User) error {
 	if user.Acc == "" || user.Pwd == "" {
-		return false, errors.New("账号或密码不能为空")
+		return errors.New("账号或密码不能为空")
 	}
 	if user.SignType == 0 {
-		return false, errors.New("请选择注册类型")
+		return errors.New("请选择注册类型")
 	}
 	user.Init()
 	if isNew := glb.DB.Create(&user).NewRecord(user); isNew {
-		return false, errors.New(glb.TIP_FAIL)
+		return errors.New(glb.TIP_FAIL)
 	}
-	return true, nil
+	return nil
 }
 
 func IsExist(user *user.User) bool {

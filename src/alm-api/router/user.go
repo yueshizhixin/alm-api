@@ -28,7 +28,7 @@ func userRout() {
 		//断电
 		fmt.Println(u)
 		if c.Bind(&u) != nil {
-			glb.JSON500(c, glb.TIP_BIND_FAIL, nil)
+			glb.JSON500(c, glb.TIP_DATA_BIND_FAIL, nil)
 			return
 		}
 		fmt.Println(u)
@@ -47,10 +47,11 @@ func userRout() {
 			}
 		}
 	})
+	//注册
 	rg.POST("", func(c *gin.Context) {
 		var u user.User
 		if c.Bind(&u) != nil {
-			glb.JSON500(c, glb.TIP_BIND_FAIL, nil)
+			glb.JSON500(c, glb.TIP_DATA_BIND_FAIL, nil)
 			return
 		}
 		if ok, err = userSV.Add(&u); ok {
@@ -62,10 +63,11 @@ func userRout() {
 			return
 		}
 	})
+	//登录
 	rg.POST("signIn", func(c *gin.Context) {
 		var u user.User
 		if c.Bind(&u) != nil {
-			glb.JSON500(c, glb.TIP_BIND_FAIL, nil)
+			glb.JSON500(c, glb.TIP_DATA_BIND_FAIL, nil)
 			return
 		}
 		if ok = userSV.IsExist(&u); ok {
