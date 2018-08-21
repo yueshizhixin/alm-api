@@ -14,7 +14,7 @@ import (
 	@time   : 2018-07-23 21:19:00 
  */
 type User struct {
-	Id         uint32    `json:"id" gorm:"primary_key;"`                                   /*用户标识*/
+	Id         uint32    `form:"id" json:"id" gorm:"primary_key;"`                                   /*用户标识*/
 	Acc        string    `json:"acc" gorm:"column:acc;type:varchar(16);"`                  /*注册账号*/
 	Phone      string    `json:"phone" gorm:"column:phone;type:varchar(32);"`              /*手机号*/
 	Email      string    `json:"email" gorm:"column:email;type:varchar(64);"`              /*电子邮箱*/
