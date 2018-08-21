@@ -7,7 +7,6 @@ import (
 	"alm-api/session"
 	"alm-api/global"
 	"alm-api/middleWare/auth"
-	"fmt"
 )
 
 /*
@@ -25,13 +24,10 @@ func userRout() {
 	})
 	rg.GET("", func(c *gin.Context) {
 		var u user.User
-		//断电
-		fmt.Println(u)
 		if c.Bind(&u) != nil {
 			glb.JSON500(c, glb.TIP_DATA_BIND_FAIL, nil)
 			return
 		}
-		fmt.Println(u)
 		if u.Id > 0 {
 			glb.JSON200(c, nil, gin.H{
 				"user": glb.DB.Take(&u),
@@ -54,7 +50,7 @@ func userRout() {
 			glb.JSON500(c, glb.TIP_DATA_BIND_FAIL, nil)
 			return
 		}
-		if ok, err = userSV.Add(&u); ok {
+		if err = userSV.Add(&u); err != nil {
 			session.Set(c, &u)
 			glb.JSON200(c, glb.TIP_SUCCESS, nil)
 			return
